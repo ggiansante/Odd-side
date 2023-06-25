@@ -14,9 +14,19 @@ selected_season = st.sidebar.selectbox('Season', ['2022/2023', '2021/2022', '202
 #https://www.football-data.co.uk/mmz4281/2223/E0.csv
 
 def load_data(league, season):
+  if selected_league == 'England':
+    league = 'E0'
+
+  if selected_season == '2022/2023':
+    season = '2223'
+    
   url = "https://www.football-data.co.uk/mmz4281/"+season+"/"+league+".csv"
   data = pd.read_csv(url)
   return data
 
 df = load_data(selected_league, selected_season)
+
+st.subheader("Country: " +selected_league)
+st.dataframe(df)
+
 
